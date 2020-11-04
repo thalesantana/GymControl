@@ -5,9 +5,17 @@ const Member = require('../models/Member')
 module.exports = {
     index(req,res){
 
-        Member.all(function(members){
-            return res.render("members/index", {members})
-        })
+        const {filter} = req.query
+
+        if(filter){
+            Member.findBy(filter, function(members){
+                return res.render("members/index", {members, filter})
+            })
+        } else{
+            Member.all(function(members){
+                return res.render("members/index", {members})
+            })
+        }
     },
     create(req,res){
         Member.instructorsSelectOptions(function(options){
