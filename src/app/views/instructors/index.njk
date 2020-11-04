@@ -3,12 +3,26 @@
 {% block content %}
 
     <div class="card table-container">
-        <a href="/instructors/create">Novo</a>
+
+        <div class="header">
+            <a class="button" href="/instructors/create">Novo</a>
+            <form action="/instructors" method="GET">
+                <input 
+                    type="text"
+                    name="filter"
+                    placeholder="Nome ou atendimento"
+                    value={{filter}}
+                >
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+      
         <table width="100%">
             <thead>
                 <tr>
                     <th>Instrutor</th>
                     <th>Atendimento</th>
+                    <th>Alunos</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -20,12 +34,8 @@
                             {{instructor.name}}
                         </td>
                         
-                        <td class="services">
-                            {%for service in instructor.services%}
-                                <span>{{service}} </span> 
-                            {%endfor%}           
-                        </td>
-                        
+                        <td class="services">{{instructor.services}} </td>
+                        <td class="services">{{instructor.total_students}} </td>
                         <td><a href="/instructors/{{instructor.id}}">ver</a></td>
                     </tr>
                 {%endfor%}
