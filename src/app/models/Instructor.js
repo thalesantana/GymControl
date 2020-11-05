@@ -38,6 +38,7 @@ module.exports= {
              if(err) throw `Database Error!${err}`
              
              callback(results.rows[0])
+
          })
     },
     find(id, callback){
@@ -128,5 +129,6 @@ module.exports= {
 
             callback(results.rows)
         })
-    }
+    },
 }
+ 

@@ -6,7 +6,7 @@ module.exports = {
       let {filter, page, limit} = req.query
 
        page = page || 1;
-       limit = limit || 2 ;
+       limit = limit || 4 ;
        let offset = limit * (page -1);
 
        const params = {
@@ -24,8 +24,7 @@ module.exports = {
            }
        }
 
-    Instructor.paginate(params);
-
+    Instructor.paginate(params);  
     },
     create(req,res){
         return res.render("instructors/create")
